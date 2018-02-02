@@ -58,6 +58,19 @@ namespace Ex30_LinkedList
         }
         public void InsertLast(object o)
         {
+            ListItem newLI = new ListItem(o);
+            if (Count == 0)
+            {
+                firstItem = newLI;
+                lastItem = newLI;
+                itemCount++;
+            } else
+            {
+                ListItem currentLast = lastItem;
+                currentLast.Next = newLI;
+                lastItem = newLI;
+                itemCount++;
+            }
 
         }
         public void RemoveAt(object o)
