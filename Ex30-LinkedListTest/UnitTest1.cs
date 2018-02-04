@@ -154,18 +154,18 @@ namespace Ex30_LinkedListTest
         {
             LinkedList list = new LinkedList();
             list.InsertLast(3);
-            //list.InsertLast("Hello World");
-            //list.InsertLast(p5);
-            //list.InsertLast(0.256);
+            list.InsertLast("Hello World");
+            list.InsertLast(p5);
+            list.InsertLast(0.256);
 
             Assert.AreEqual(3, list.First);
-            //Assert.AreEqual(0.256, list.Last);
-            //Assert.AreEqual(4, list.Count);
+            Assert.AreEqual(0.256, list.Last);
+            Assert.AreEqual(4, list.Count);
 
             Assert.AreEqual(3, list.Items(0));
-            //Assert.AreEqual("Hello World", list.Items(1));
-            //Assert.AreEqual(p5, list.Items(2));
-            //Assert.AreEqual(0.256, list.Items(3));
+            Assert.AreEqual("Hello World", list.Items(1));
+            Assert.AreEqual(p5, list.Items(2));
+            Assert.AreEqual(0.256, list.Items(3));
         }
 
         //[TestMethod]
