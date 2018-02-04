@@ -43,129 +43,129 @@ namespace Ex30_LinkedListTest
         {
             LinkedList list = new LinkedList();
 
-            Assert.AreEqual(list.First, null);
-            Assert.AreEqual(list.Last, null);
-            Assert.AreEqual(list.Count, 0);
+            Assert.AreEqual(null, list.First);
+            Assert.AreEqual(null, list.Last);
+            Assert.AreEqual(0, list.Count);
         }
-        //[TestMethod]
-        //public void TestInsertLast()
-        //{
-        //    LinkedList list = new LinkedList();
-        //    list.InsertLast(p1);  // p1
-        //    list.InsertLast(p7);  // p1,p7
-        //    list.InsertLast(p13); // p1,p7,p13
+        [TestMethod]
+        public void TestInsertLast()
+        {
+            LinkedList list = new LinkedList();
+            list.InsertLast(p1);  // p1
+            list.InsertLast(p7);  // p1,p7
+            list.InsertLast(p13); // p1,p7,p13
 
-        //    Assert.AreEqual(list.First, p1);
-        //    Assert.AreEqual(list.Last, p13);
-        //    Assert.AreEqual(list.Count, 3);
+            Assert.AreEqual(p1, list.First);
+            Assert.AreEqual(p13, list.Last);
+            Assert.AreEqual(3, list.Count);
 
-        //    Assert.AreEqual(list.Items(0), p1);
-        //    Assert.AreEqual(list.Items(1), p7);
-        //    Assert.AreEqual(list.Items(2), p13);
-        //}
-        //[TestMethod]
-        //public void TestInsertFirst()
-        //{
-        //    LinkedList list = new LinkedList();
-        //    list.InsertFirst(p5);  // p5
-        //    list.InsertFirst(p21); // p21,p5
-        //    list.InsertFirst(p9);  // p9,p21,p5
-        //    list.InsertFirst(p24); // p24,p9,p21,p5
+            Assert.AreEqual(p1, list.Items(0));
+            Assert.AreEqual(p7, list.Items(1));
+            Assert.AreEqual(p13, list.Items(2));
+        }
+        [TestMethod]
+        public void TestInsertFirst()
+        {
+            LinkedList list = new LinkedList();
+            list.InsertFirst(p5);  // p5
+            list.InsertFirst(p21); // p21,p5
+            list.InsertFirst(p9);  // p9,p21,p5
+            list.InsertFirst(p24); // p24,p9,p21,p5
 
-        //    Assert.AreEqual(list.First, p24);
-        //    Assert.AreEqual(list.Last, p5);
-        //    Assert.AreEqual(list.Count, 4);
+            Assert.AreEqual(p24, list.First);
+            Assert.AreEqual(p5, list.Last);
+            Assert.AreEqual(4, list.Count);
 
-        //    Assert.AreEqual(list.Items(0), p24);
-        //    Assert.AreEqual(list.Items(1), p9);
-        //    Assert.AreEqual(list.Items(2), p21);
-        //    Assert.AreEqual(list.Items(3), p5);
-        //}
-        //[TestMethod]
-        //public void TestMixedInserts()
-        //{
-        //    LinkedList list = new LinkedList();
-        //    list.InsertFirst(p3); // p3
-        //    list.InsertLast(p22); // p3,p22
-        //    list.InsertFirst(p9); // p9,p3,p22
-        //    list.InsertFirst(p1); // p1,p9,p3,p22
-        //    list.InsertLast(p24); // p1,p9,p3,p22,p24
-        //    list.InsertFirst(p5); // p5,p1,p9,p3,p22,p24
-        //    list.InsertLast(p16); // p5,p1,p9,p3,p22,p24,p16
+            Assert.AreEqual(p24, list.Items(0));
+            Assert.AreEqual(p9, list.Items(1));
+            Assert.AreEqual(p21, list.Items(2));
+            Assert.AreEqual(p5, list.Items(3));
+        }
+        [TestMethod]
+        public void TestMixedInserts()
+        {
+            LinkedList list = new LinkedList();
+            list.InsertFirst(p3); // p3
+            list.InsertLast(p22); // p3,p22
+            list.InsertFirst(p9); // p9,p3,p22
+            list.InsertFirst(p1); // p1,p9,p3,p22
+            list.InsertLast(p24); // p1,p9,p3,p22,p24
+            list.InsertFirst(p5); // p5,p1,p9,p3,p22,p24
+            list.InsertLast(p16); // p5,p1,p9,p3,p22,p24,p16
 
-        //    Assert.AreEqual(list.First, p5);
-        //    Assert.AreEqual(list.Last, p16);
-        //    Assert.AreEqual(list.Count, 7);
+            Assert.AreEqual(p5, list.First);
+            Assert.AreEqual(p16, list.Last);
+            Assert.AreEqual(7, list.Count);
 
-        //    Assert.AreEqual(list.Items(0), p5);
-        //    Assert.AreEqual(list.Items(1), p1);
-        //    Assert.AreEqual(list.Items(2), p9);
-        //    Assert.AreEqual(list.Items(3), p3);
-        //    Assert.AreEqual(list.Items(4), p22);
-        //    Assert.AreEqual(list.Items(5), p24);
-        //    Assert.AreEqual(list.Items(6), p16);
-        //}
-        //[TestMethod]
-        //public void TestRemoves()
-        //{
-        //    LinkedList list = new LinkedList();
-        //    list.InsertFirst(p5);  // p5
-        //    list.InsertFirst(p21); // p21,p5
-        //    list.InsertFirst(p9);  // p9,p21,p5
-        //    list.InsertFirst(p24); // p24,p9,p21,p5
-        //    list.RemoveAt(2);      // p24,p9,p5
+            Assert.AreEqual(p5, list.Items(0));
+            Assert.AreEqual(p1, list.Items(1));
+            Assert.AreEqual(p9, list.Items(2));
+            Assert.AreEqual(p3, list.Items(3));
+            Assert.AreEqual(p22, list.Items(4));
+            Assert.AreEqual(p24, list.Items(5));
+            Assert.AreEqual(p16, list.Items(6));
+        }
+        [TestMethod]
+        public void TestRemoves()
+        {
+            LinkedList list = new LinkedList();
+            list.InsertFirst(p5);  // p5
+            list.InsertFirst(p21); // p21,p5
+            list.InsertFirst(p9);  // p9,p21,p5
+            list.InsertFirst(p24); // p24,p9,p21,p5
+            list.RemoveAt(2);      // p24,p9,p5
 
-        //    Assert.AreEqual(list.First, p24);
-        //    Assert.AreEqual(list.Last, p5);
-        //    Assert.AreEqual(list.Count, 3);
+            Assert.AreEqual(p24, list.First);
+            Assert.AreEqual(p5, list.Last);
+            Assert.AreEqual(3, list.Count);
 
-        //    Assert.AreEqual(list.Items(0), p24);
-        //    Assert.AreEqual(list.Items(1), p9);
-        //    Assert.AreEqual(list.Items(2), p5);
-        //}
-        //[TestMethod]
-        //public void TestMixedInsertsAndRemoves()
-        //{
-        //    LinkedList list = new LinkedList();
-        //    list.InsertFirst(p3); // p3
-        //    list.InsertLast(p22); // p3,p22
-        //    list.InsertFirst(p9); // p9,p3,p22
-        //    list.RemoveAt(0);     // p3,p22
-        //    list.InsertFirst(p1); // p1,p3,p22
-        //    list.InsertLast(p24); // p1,p3,p22,p24
-        //    list.InsertFirst(p5); // p5,p1,p3,p22,p24
-        //    list.RemoveAt(4);     // p5,p1,p3,p22
-        //    list.InsertLast(p16); // p5,p1,p3,p22,p16
-        //    list.RemoveAt(2);     // p5,p1,p22,p16
+            Assert.AreEqual(p24, list.Items(0));
+            Assert.AreEqual(p9, list.Items(1));
+            Assert.AreEqual(p5, list.Items(2));
+        }
+        [TestMethod]
+        public void TestMixedInsertsAndRemoves()
+        {
+            LinkedList list = new LinkedList();
+            list.InsertFirst(p3); // p3
+            list.InsertLast(p22); // p3,p22
+            list.InsertFirst(p9); // p9,p3,p22
+            list.RemoveAt(0);     // p3,p22
+            list.InsertFirst(p1); // p1,p3,p22
+            list.InsertLast(p24); // p1,p3,p22,p24
+            list.InsertFirst(p5); // p5,p1,p3,p22,p24
+            list.RemoveAt(4);     // p5,p1,p3,p22
+            list.InsertLast(p16); // p5,p1,p3,p22,p16
+            list.RemoveAt(2);     // p5,p1,p22,p16
 
-        //    Assert.AreEqual(list.First, p5);
-        //    Assert.AreEqual(list.Last, p16);
-        //    Assert.AreEqual(list.Count, 4);
+            Assert.AreEqual(p5, list.First);
+            Assert.AreEqual(p16, list.Last);
+            Assert.AreEqual(4, list.Count);
 
-        //    Assert.AreEqual(list.Items(0), p5);
-        //    Assert.AreEqual(list.Items(1), p1);
-        //    Assert.AreEqual(list.Items(2), p22);
-        //    Assert.AreEqual(list.Items(3), p16);
-        //    Assert.AreEqual(list.ToString(), "5: Jarib Boustred (Male), 32 years|1: Farrand Semkins (Female), 77 years|22: Merle Bennet (Female), 42 years|16: Tore Saggs (Male), 28 years");
-        //}
+            Assert.AreEqual(p5, list.Items(0));
+            Assert.AreEqual(p1, list.Items(1));
+            Assert.AreEqual(p22, list.Items(2));
+            Assert.AreEqual(p16, list.Items(3));
+            Assert.AreEqual("5: Jarib Boustred (Male), 32 years|1: Farrand Semkins (Female), 77 years|22: Merle Bennet (Female), 42 years|16: Tore Saggs (Male), 28 years", list.ToString());
+        }
 
         [TestMethod]
         public void TestMixedElementTypes()
         {
             LinkedList list = new LinkedList();
             list.InsertLast(3);
-            list.InsertLast("Hello World");
-            list.InsertLast(p5);
-            list.InsertLast(0.256);
+            //list.InsertLast("Hello World");
+            //list.InsertLast(p5);
+            //list.InsertLast(0.256);
 
-            Assert.AreEqual(list.First, 3);
-            Assert.AreEqual(list.Last, 0.256);
-            Assert.AreEqual(list.Count, 4);
+            Assert.AreEqual(3, list.First);
+            //Assert.AreEqual(0.256, list.Last);
+            //Assert.AreEqual(4, list.Count);
 
-            Assert.AreEqual(list.Items(0), 3);
-            Assert.AreEqual(list.Items(1), "Hello World");
-            Assert.AreEqual(list.Items(2), p5);
-            Assert.AreEqual(list.Items(3), 0.256);
+            Assert.AreEqual(3, list.Items(0));
+            //Assert.AreEqual("Hello World", list.Items(1));
+            //Assert.AreEqual(p5, list.Items(2));
+            //Assert.AreEqual(0.256, list.Items(3));
         }
 
         //[TestMethod]
@@ -178,25 +178,18 @@ namespace Ex30_LinkedListTest
         //    list.InsertLast(p19);
         //    list.InsertLast(p23);
         //    list.InsertLast(p2); // p4,p9,p5,p19,p23,p2
-        //    Assert.AreEqual(list.First, p4);
-        //    Assert.AreEqual(list.Last, p2);
-        //    Assert.AreEqual(list.Count, 6);
+        //    Assert.AreEqual(p4, list.First);
+        //    Assert.AreEqual(p2, list.Last);
+        //    Assert.AreEqual(6, list.Count);
 
         //    list.Sort(); // Default sort on FullName
-        //    Assert.AreEqual(list.Items(0), p19);
-        //    Assert.AreEqual(list.Items(1), p4);
-        //    Assert.AreEqual(list.Items(2), p5);
-        //    Assert.AreEqual(list.Items(3), p9);
-        //    Assert.AreEqual(list.Items(4), p23);
-        //    Assert.AreEqual(list.Items(5), p2);
-
-        //    list.Sort(Person.SortAgeAscending());
-        //    Assert.AreEqual(list.Items(0), p19);
-        //    Assert.AreEqual(list.Items(1), p5);
-        //    Assert.AreEqual(list.Items(2), p9);
-        //    Assert.AreEqual(list.Items(3), p23);
-        //    Assert.AreEqual(list.Items(4), p4);
-        //    Assert.AreEqual(list.Items(5), p2);
+        //    Assert.AreEqual(p19, list.Items(0));
+        //    Assert.AreEqual(p4, list.Items(1));
+        //    Assert.AreEqual(p5, list.Items(2));
+        //    Assert.AreEqual(p9, list.Items(3));
+        //    Assert.AreEqual(p23, list.Items(4));
+        //    Assert.AreEqual(p2, list.Items(5));
         //}
     }
+
 }

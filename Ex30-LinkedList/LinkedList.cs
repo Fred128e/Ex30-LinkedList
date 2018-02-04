@@ -28,33 +28,46 @@ namespace Ex30_LinkedList
         public int Count { get { return itemCount; } }
         public object First {
             get {
-                if (firstItem != null)
-                { return firstItem.Item; }
-                else { return null; }
+                if (firstItem == null)
+                { return null; }
+                else { return firstItem.Item; }
             } }
         public object Last {
             get {
-                if (lastItem != null)
-                { return lastItem.Item; }
-                else { return null; }
+                if (lastItem == null)
+                { return null; }
+                else { return lastItem.Item; }
             } }
         public object Items(int index)
         {
-            ListItem work = null;
+            object item = null;
             if (index < Count)
             {
-                work = firstItem; ;
-                for (int i = 0; i < index; i++)
+                ListItem work = firstItem; ;
+                for (int i = 0; i <= index; i++)
                 {
+                    item = work.Item;
                     work = work.Next;
                 }
             }
-            object o = work as object;
-            return o;
+            return item;
         }
         public void InsertFirst(object o)
         {
-
+            ListItem newLI = new ListItem(o);
+            if (Count == 0)
+            {
+                firstItem = newLI;
+                lastItem = newLI;
+                itemCount++;
+            }
+            else
+            {
+                ListItem currentFirst = firstItem;
+                newLI.Next = currentFirst;
+                firstItem = newLI;
+                itemCount++;
+            }
         }
         public void InsertLast(object o)
         {
@@ -63,19 +76,59 @@ namespace Ex30_LinkedList
             {
                 firstItem = newLI;
                 lastItem = newLI;
-                itemCount++;
-            } else
-            {
-                ListItem currentLast = lastItem;
-                currentLast.Next = newLI;
-                lastItem = newLI;
-                itemCount++;
             }
-
+            else
+            {
+                ListItem current = lastItem;
+                current.Next = newLI;
+                lastItem = newLI;
+            }
+            itemCount++;
         }
-        public void RemoveAt(object o)
+        public void RemoveAt(int index)
         {
+            if (index > Count || index < 0) { throw new ArgumentOutOfRangeException("Der findes ikke objekter på plads "+ index); }
+            if (index < Count)
+            {
+                if (index == 0 && Count == 1)
+                {
+                    firstItem = null;
+                    firstItem.Next = null;
 
+                }
+                if (Count > 0 && index > 0 && index < Count - 1)
+                {
+                    ListItem workItem = null;
+
+                    ListItem itemBeforeIndex = firstItem;
+                    ListItem itemOnIndex = firstItem;
+                    for (int i = 0; i <= index; i++)
+                    {
+                        workItem = itemOnIndex;
+                        itemOnIndex = itemOnIndex.Next;
+                    }
+                    for (int i = 0; i < index; i++)
+                    {
+                        itemBeforeIndex = itemBeforeIndex.Next;
+                    }
+                    itemBeforeIndex.Next = workItem.Next;
+
+                }
+                if (index == Count-1 && index != 0)
+                {
+                    ListItem secondToLastItem = firstItem;
+                    ListItem toBecomeLastItem = null;
+                    for (int i = 0; i < Count-2; i++)
+                    {
+                        toBecomeLastItem = secondToLastItem.Next;
+                        secondToLastItem = secondToLastItem.Next;
+                    }
+                    lastItem = toBecomeLastItem;
+                    lastItem.Next = null;
+                    
+                }
+                itemCount--;
+            }
         }
         public override string ToString()
         {
