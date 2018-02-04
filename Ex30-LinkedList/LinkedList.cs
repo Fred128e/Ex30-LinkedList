@@ -40,27 +40,7 @@ namespace Ex30_LinkedList
             } }
         public object Items(int index)
         {
-            object item = null;
-            if (index < Count)
-            {
-                ListItem work = firstItem;
-                if (index == 0)
-                {
-                    item = work.Item;
-                }
-                else if (index > 0 && index != Count-1)
-                {
-                    for (int i = 0; i <= index; i++)
-                    {
-                        item = work.Item;
-                        work = work.Next;
-                    }
-                }
-                else
-                {
-                    item = lastItem.Item;
-                }
-            }
+            object item = FindIndex(index).Item;
             return item;
         }
         public void InsertFirst(object o)
@@ -98,48 +78,60 @@ namespace Ex30_LinkedList
         }
         public void RemoveAt(int index)
         {
-            if (index > Count || index < 0) { throw new ArgumentOutOfRangeException("Der findes ikke objekter på plads "+ index); }
-            if (index < Count)
-            {
-                if (index == 0 && Count == 1)
+            //if (index >= Count || index < 0)
+            //{
+            //    throw new ArgumentOutOfRangeException("Der findes ikke objekter på plads "+ index);
+            //}
+            //else
+            { 
+                if (Count == 1)
                 {
                     firstItem = null;
                     firstItem.Next = null;
-
+                    lastItem = null;
                 }
-                if (Count > 0 && index > 0 && index < Count - 1)
+                if (Count >1 && index == 0)
                 {
-                    ListItem workItem = null;
-
-                    ListItem itemBeforeIndex = firstItem;
-                    ListItem itemOnIndex = firstItem;
-                    for (int i = 0; i <= index; i++)
-                    {
-                        workItem = itemOnIndex;
-                        itemOnIndex = itemOnIndex.Next;
-                    }
-                    for (int i = 0; i < index; i++)
-                    {
-                        itemBeforeIndex = itemBeforeIndex.Next;
-                    }
-                    itemBeforeIndex.Next = workItem.Next;
-
+                    firstItem = FindIndex(1);
                 }
-                if (index == Count-1 && index != 0)
+                if (Count >1 && index >0 && index < Count-1)
                 {
-                    ListItem secondToLastItem = firstItem;
-                    ListItem toBecomeLastItem = null;
-                    for (int i = 0; i < Count-2; i++)
-                    {
-                        toBecomeLastItem = secondToLastItem.Next;
-                        secondToLastItem = secondToLastItem.Next;
-                    }
-                    lastItem = toBecomeLastItem;
-                    lastItem.Next = null;
-                    
+                    ListItem current = FindIndex(index);
+                    ListItem oneBeforeCurrent = FindIndex(index - 1);
+                    oneBeforeCurrent.Next = current.Next;
+                }
+                if (index == Count-1)
+                {
+                    ListItem oneBeforeCurrent = FindIndex(index - 1);
+                    oneBeforeCurrent = null;
                 }
                 itemCount--;
             }
+        }
+        private ListItem FindIndex(int index)
+        {
+            ListItem item = null;
+            if (index < Count)
+            {
+                ListItem work = firstItem;
+                if (index == 0)
+                {
+                    item = work;
+                }
+                else if (index > 0 && index != Count - 1)
+                {
+                    for (int i = 0; i <= index; i++)
+                    {
+                        item = work;
+                        work = work.Next;
+                    }
+                }
+                else
+                {
+                    item = lastItem;
+                }
+            }
+            return item;
         }
         public override string ToString()
         {
