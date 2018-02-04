@@ -43,11 +43,22 @@ namespace Ex30_LinkedList
             object item = null;
             if (index < Count)
             {
-                ListItem work = firstItem; ;
-                for (int i = 0; i <= index; i++)
+                ListItem work = firstItem;
+                if (index == 0)
                 {
                     item = work.Item;
-                    work = work.Next;
+                }
+                else if (index > 0 && index != Count-1)
+                {
+                    for (int i = 0; i <= index; i++)
+                    {
+                        item = work.Item;
+                        work = work.Next;
+                    }
+                }
+                else
+                {
+                    item = lastItem.Item;
                 }
             }
             return item;
@@ -138,6 +149,10 @@ namespace Ex30_LinkedList
             {
                 tostring += current.ToString();
                 current = current.Next;
+                if (i != Count - 1)
+                {
+                    tostring += "|";
+                }
             }
             return tostring;
         }
