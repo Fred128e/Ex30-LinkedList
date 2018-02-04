@@ -43,6 +43,31 @@ namespace Ex30_LinkedList
             object item = FindIndex(index).Item;
             return item;
         }
+        private ListItem FindIndex(int index)
+        {
+            ListItem item = null;
+            if (index < Count)
+            {
+                ListItem work = firstItem;
+                if (index == 0)
+                {
+                    item = work;
+                }
+                else if (index > 0 && index != Count - 1)
+                {
+                    for (int i = 0; i <= index; i++)
+                    {
+                        item = work;
+                        work = work.Next;
+                    }
+                }
+                else
+                {
+                    item = lastItem;
+                }
+            }
+            return item;
+        }
         public void InsertFirst(object o)
         {
             ListItem newLI = new ListItem(o);
@@ -78,11 +103,11 @@ namespace Ex30_LinkedList
         }
         public void RemoveAt(int index)
         {
-            //if (index >= Count || index < 0)
-            //{
-            //    throw new ArgumentOutOfRangeException("Der findes ikke objekter på plads "+ index);
-            //}
-            //else
+            if (index >= Count || index < 0)
+            {
+                throw new ArgumentOutOfRangeException("Der findes ikke objekter på plads " + index);
+            }
+            else
             { 
                 if (Count == 1)
                 {
@@ -108,31 +133,6 @@ namespace Ex30_LinkedList
                 }
                 itemCount--;
             }
-        }
-        private ListItem FindIndex(int index)
-        {
-            ListItem item = null;
-            if (index < Count)
-            {
-                ListItem work = firstItem;
-                if (index == 0)
-                {
-                    item = work;
-                }
-                else if (index > 0 && index != Count - 1)
-                {
-                    for (int i = 0; i <= index; i++)
-                    {
-                        item = work;
-                        work = work.Next;
-                    }
-                }
-                else
-                {
-                    item = lastItem;
-                }
-            }
-            return item;
         }
         public override string ToString()
         {
