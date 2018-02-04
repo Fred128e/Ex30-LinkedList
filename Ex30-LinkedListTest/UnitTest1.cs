@@ -144,7 +144,7 @@ namespace Ex30_LinkedListTest
 
             Assert.AreEqual(p5, list.Items(0));
             Assert.AreEqual(p1, list.Items(1));
-            //Assert.AreEqual(p22, list.Items(2));
+            Assert.AreEqual(p22, list.Items(2));
             Assert.AreEqual(p16, list.Items(3));
             Assert.AreEqual("5: Jarib Boustred (Male), 32 years|1: Farrand Semkins (Female), 77 years|22: Merle Bennet (Female), 42 years|16: Tore Saggs (Male), 28 years", list.ToString());
         }

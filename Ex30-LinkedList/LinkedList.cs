@@ -103,7 +103,8 @@ namespace Ex30_LinkedList
                 if (index == Count-1)
                 {
                     ListItem oneBeforeCurrent = FindIndex(index - 1);
-                    oneBeforeCurrent = null;
+                    oneBeforeCurrent.Next = null;
+                    lastItem = oneBeforeCurrent;
                 }
                 itemCount--;
             }
