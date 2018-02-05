@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Text;
+//using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ex30_LinkedList;
 
 namespace Ex30_LinkedListTest
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest2
     {
         // Instantiating 25 test persons
         Person p1 = new Person { Id = 1, FirstName = "Farrand", LastName = "Semkins", Gender = Gender.Female, Age = 77 };
@@ -39,18 +41,98 @@ namespace Ex30_LinkedListTest
         {
         }
         [TestMethod]
-        public void TestEmptyLinkedList()
+        public void TestGenericDividedElementTypes()
         {
-            GenericLinkedList list = new GenericLinkedList();
+            // ** int list test *********
+            LinkedList<int> listInt = new LinkedList<int>();
+
+            // Test for empty int list
+            //Assert.AreEqual(null, listInt.First);
+            //Assert.AreEqual(null, listInt.Last);
+            Assert.AreEqual(0, listInt.Count);
+
+            // Insert ints and test
+            listInt.InsertLast(105);
+            listInt.InsertLast(45);
+            listInt.InsertLast(11);
+            listInt.InsertLast(3);
+
+            Assert.AreEqual(105, listInt.First);
+            Assert.AreEqual(3, listInt.Last);
+            Assert.AreEqual(4, listInt.Count);
+            Assert.AreEqual(105, listInt.Items(0));
+            Assert.AreEqual(45, listInt.Items(1));
+            Assert.AreEqual(11, listInt.Items(2));
+            Assert.AreEqual(3, listInt.Items(3));
+
+            // Sort int list and test
+            listInt.Sort();
+            Assert.AreEqual(3, listInt.Items(0));
+            Assert.AreEqual(11, listInt.Items(1));
+            Assert.AreEqual(45, listInt.Items(2));
+            Assert.AreEqual(105, listInt.Items(3));
+
+            // ** string list test **********
+            LinkedList<string> listString = new LinkedList<string>();
+
+            // Insert strings and test
+            listString.InsertLast("Hello World!");
+            listString.InsertLast("This is a ");
+            listString.InsertLast("test of ");
+            listString.InsertLast("LinkedList<string>");
+
+            Assert.AreEqual("Hello World!", listString.First);
+            Assert.AreEqual("LinkedList<string>", listString.Last);
+            Assert.AreEqual(4, listString.Count);
+            Assert.AreEqual("Hello World!", listString.Items(0));
+            Assert.AreEqual("This is a ", listString.Items(1));
+            Assert.AreEqual("test of ", listString.Items(2));
+            Assert.AreEqual("LinkedList<string>", listString.Items(3));
+
+            // Sort string list and test
+            //listString.Sort();
+            //Assert.AreEqual("Hello World!", listString.Items(0));
+            //Assert.AreEqual("LinkedList<string>", listString.Items(1));
+            //Assert.AreEqual("test of ", listString.Items(2));
+            //Assert.AreEqual("This is a ", listString.Items(3));
+
+            // ** decimal list test ***********
+            LinkedList<decimal> listDecimal = new LinkedList<decimal>();
+
+            // Insert decimals and test
+            listDecimal.InsertLast(3.1415m); // Pi
+            listDecimal.InsertLast(1.4142m); // square root of 2
+            listDecimal.InsertLast(2.7182m); // e (Euler)
+            listDecimal.InsertLast(1.6180m); // Golden ratio
+
+            Assert.AreEqual(3.1415m, listDecimal.First);
+            Assert.AreEqual(1.6180m, listDecimal.Last);
+            Assert.AreEqual(4, listDecimal.Count);
+            Assert.AreEqual(3.1415m, listDecimal.Items(0));
+            Assert.AreEqual(1.4142m, listDecimal.Items(1));
+            Assert.AreEqual(2.7182m, listDecimal.Items(2));
+            Assert.AreEqual(1.6180m, listDecimal.Items(3));
+
+            // Sort decimal list and test
+            //listDecimal.Sort();
+            //Assert.AreEqual(1.4142m, listDecimal.Items(0));
+            //Assert.AreEqual(1.6180m, listDecimal.Items(1));
+            //Assert.AreEqual(2.7182m, listDecimal.Items(2));
+            //Assert.AreEqual(3.1415m, listDecimal.Items(3));
+        }
+        [TestMethod]
+        public void TestGenericEmptyLinkedList()
+        {
+            LinkedList<Person> list = new LinkedList<Person>();
 
             Assert.AreEqual(null, list.First);
             Assert.AreEqual(null, list.Last);
             Assert.AreEqual(0, list.Count);
         }
         [TestMethod]
-        public void TestInsertLast()
+        public void TestGenericInsertLast()
         {
-            GenericLinkedList list = new GenericLinkedList();
+            LinkedList<Person> list = new LinkedList<Person>();
             list.InsertLast(p1);  // p1
             list.InsertLast(p7);  // p1,p7
             list.InsertLast(p13); // p1,p7,p13
@@ -64,9 +146,9 @@ namespace Ex30_LinkedListTest
             Assert.AreEqual(p13, list.Items(2));
         }
         [TestMethod]
-        public void TestInsertFirst()
+        public void TestGenericInsertFirst()
         {
-            GenericLinkedList list = new GenericLinkedList();
+            LinkedList<Person> list = new LinkedList<Person>();
             list.InsertFirst(p5);  // p5
             list.InsertFirst(p21); // p21,p5
             list.InsertFirst(p9);  // p9,p21,p5
@@ -82,9 +164,9 @@ namespace Ex30_LinkedListTest
             Assert.AreEqual(p5, list.Items(3));
         }
         [TestMethod]
-        public void TestMixedInserts()
+        public void TestGenericMixedInserts()
         {
-            GenericLinkedList list = new GenericLinkedList();
+            LinkedList<Person> list = new LinkedList<Person>();
             list.InsertFirst(p3); // p3
             list.InsertLast(p22); // p3,p22
             list.InsertFirst(p9); // p9,p3,p22
@@ -106,9 +188,9 @@ namespace Ex30_LinkedListTest
             Assert.AreEqual(p16, list.Items(6));
         }
         [TestMethod]
-        public void TestRemoves()
+        public void TestGenericRemoves()
         {
-            GenericLinkedList list = new GenericLinkedList();
+            LinkedList<Person> list = new LinkedList<Person>();
             list.InsertFirst(p5);  // p5
             list.InsertFirst(p21); // p21,p5
             list.InsertFirst(p9);  // p9,p21,p5
@@ -124,9 +206,9 @@ namespace Ex30_LinkedListTest
             Assert.AreEqual(p5, list.Items(2));
         }
         [TestMethod]
-        public void TestMixedInsertsAndRemoves()
+        public void TestGenericMixedInsertsAndRemoves()
         {
-            GenericLinkedList list = new GenericLinkedList();
+            LinkedList<Person> list = new LinkedList<Person>();
             list.InsertFirst(p3); // p3
             list.InsertLast(p22); // p3,p22
             list.InsertFirst(p9); // p9,p3,p22
@@ -149,47 +231,23 @@ namespace Ex30_LinkedListTest
             Assert.AreEqual("5: Jarib Boustred (Male), 32 years|1: Farrand Semkins (Female), 77 years|22: Merle Bennet (Female), 42 years|16: Tore Saggs (Male), 28 years", list.ToString());
         }
 
-        [TestMethod]
-        public void TestMixedElementTypes()
-        {
-            GenericLinkedList list = new GenericLinkedList();
-            list.InsertLast(3);
-            list.InsertLast("Hello World");
-            list.InsertLast(p5);
-            list.InsertLast(0.256);
-
-            Assert.AreEqual(3, list.First);
-            Assert.AreEqual(0.256, list.Last);
-            Assert.AreEqual(4, list.Count);
-
-            Assert.AreEqual(3, list.Items(0));
-            Assert.AreEqual("Hello World", list.Items(1));
-            Assert.AreEqual(p5, list.Items(2));
-            Assert.AreEqual(0.256, list.Items(3));
-        }
-
         //[TestMethod]
-        //public void TestBubbleSort()
+        //public void TestGenericMixedElementTypes()
         //{
-        //    GenericLinkedList list = new GenericLinkedList();
-        //    list.InsertLast(p4);
-        //    list.InsertLast(p9);
+        //    LinkedList<Person> list = new LinkedList<Person>();
+        //    list.InsertLast(3);
+        //    list.InsertLast("Hello World");
         //    list.InsertLast(p5);
-        //    list.InsertLast(p19);
-        //    list.InsertLast(p23);
-        //    list.InsertLast(p2); // p4,p9,p5,p19,p23,p2
-        //    Assert.AreEqual(p4, list.First);
-        //    Assert.AreEqual(p2, list.Last);
-        //    Assert.AreEqual(6, list.Count);
+        //    list.InsertLast(0.256);
 
-        //    list.Sort(); // Default sort on FullName
-        //    Assert.AreEqual(p19, list.Items(0));
-        //    Assert.AreEqual(p4, list.Items(1));
+        //    Assert.AreEqual(3, list.First);
+        //    Assert.AreEqual(0.256, list.Last);
+        //    Assert.AreEqual(4, list.Count);
+
+        //    Assert.AreEqual(3, list.Items(0));
+        //    Assert.AreEqual("Hello World", list.Items(1));
         //    Assert.AreEqual(p5, list.Items(2));
-        //    Assert.AreEqual(p9, list.Items(3));
-        //    Assert.AreEqual(p23, list.Items(4));
-        //    Assert.AreEqual(p2, list.Items(5));
+        //    Assert.AreEqual(0.256, list.Items(3));
         //}
     }
-
 }

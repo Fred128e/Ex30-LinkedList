@@ -1,47 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ex30_LinkedList
 {
-    public class LinkedList<T>
+    public class GenericLinkedList
     {
         private class ListItem
         {
-            public T Item { get; }
+            public object Item { get; }
             public ListItem Next { get; set; }
 
-            public ListItem(T t)
+            public ListItem(object o)
             {
-                Item = t;
-                Next = null;
+                Item = o;
             }
             public override string ToString()
             {
                 return Item.ToString();
             }
         }
-        
         private ListItem lastItem = null;
         private ListItem firstItem = null;
         private int itemCount = 0;
         public int Count { get { return itemCount; } }
-        public T First {
-            get {
-                T result = default(T);
-                if (itemCount > 0)
-                { result = firstItem.Item; }
-                return result;
-            } }
-        public T Last {
+        public object First
+        {
             get
             {
-                T result = default(T);
-                if (itemCount > 0)
-                { result = lastItem.Item; }
-                return result;
-            } }
+                if (firstItem == null)
+                { return null; }
+                else { return firstItem.Item; }
+            }
+        }
+        public object Last
+        {
+            get
+            {
+                if (lastItem == null)
+                { return null; }
+                else { return lastItem.Item; }
+            }
+        }
         public object Items(int index)
         {
             object item = FindIndex(index).Item;
@@ -72,9 +74,9 @@ namespace Ex30_LinkedList
             }
             return item;
         }
-        public void InsertFirst(T t)
+        public void InsertFirst(object o)
         {
-            ListItem newLI = new ListItem(t);
+            ListItem newLI = new ListItem(o);
             if (Count == 0)
             {
                 firstItem = newLI;
@@ -89,9 +91,9 @@ namespace Ex30_LinkedList
                 itemCount++;
             }
         }
-        public void InsertLast(T t)
+        public void InsertLast(object o)
         {
-            ListItem newLI = new ListItem(t);
+            ListItem newLI = new ListItem(o);
             if (Count == 0)
             {
                 firstItem = newLI;
@@ -112,24 +114,24 @@ namespace Ex30_LinkedList
                 throw new ArgumentOutOfRangeException("Der findes ikke objekter på plads " + index);
             }
             else
-            { 
+            {
                 if (Count == 1)
                 {
                     firstItem = null;
                     firstItem.Next = null;
                     lastItem = null;
                 }
-                if (Count >1 && index == 0)
+                if (Count > 1 && index == 0)
                 {
                     firstItem = FindIndex(1);
                 }
-                if (Count >1 && index >0 && index < Count-1)
+                if (Count > 1 && index > 0 && index < Count - 1)
                 {
                     ListItem current = FindIndex(index);
                     ListItem oneBeforeCurrent = FindIndex(index - 1);
                     oneBeforeCurrent.Next = current.Next;
                 }
-                if (index == Count-1)
+                if (index == Count - 1)
                 {
                     ListItem oneBeforeCurrent = FindIndex(index - 1);
                     oneBeforeCurrent.Next = null;
@@ -142,7 +144,7 @@ namespace Ex30_LinkedList
         {
             string tostring = "";
             ListItem current = firstItem;
-            for (int i = 0; i<Count; i++)
+            for (int i = 0; i < Count; i++)
             {
                 tostring += current.ToString();
                 current = current.Next;
@@ -152,11 +154,6 @@ namespace Ex30_LinkedList
                 }
             }
             return tostring;
-        }
-
-        public void Sort()
-        {
-            throw new NotImplementedException();
         }
     }
 }
